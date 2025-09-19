@@ -1,4 +1,4 @@
-import { isNotNumber } from "./utils";
+import { isNotNumber } from "./utils"
 
 interface exerciseHours {
     periodLength: number,
