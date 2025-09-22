@@ -1,4 +1,4 @@
-import { isNotNumber } from "./utils"
+import { isNotNumber } from "./utils";
 
 interface exerciseHours {
     periodLength: number,
@@ -17,50 +17,50 @@ interface exerciseValues {
 
 const getRatingText = (averageHours: number): string => {
     if (averageHours < 1.5) {
-        return 'You tried your best'
+        return 'You tried your best';
     }
 
     if (averageHours < 2.5) {
-        return 'Cool beans'
+        return 'Cool beans';
     }
 
-    return 'Jean Claude Van Who?'
-}
+    return 'Jean Claude Van Who?';
+};
 
 const getRating = (averageHours: number): number => {
-    if (averageHours < 1.5) return 1
-    if (averageHours < 2.5) return 2
-    return 3
-}
+    if (averageHours < 1.5) return 1;
+    if (averageHours < 2.5) return 2;
+    return 3;
+};
 
 const parseArgumentsExercise = (args: string[]): exerciseValues => {
-    if (args.length < 4) throw new Error('Not enough arguments')
+    if (args.length < 4) throw new Error('Not enough arguments');
 
-    const hoursArgs: string[] = args.slice(3)
+    const hoursArgs: string[] = args.slice(3);
     const hoursNumbers: number[] = hoursArgs.map(hour => {
-        const numHour = Number(hour)
+        const numHour = Number(hour);
         if (isNotNumber(numHour)) {
-            throw new Error('Argument is not a number')
+            throw new Error('Argument is not a number');
         }
         if (numHour < 0) {
-            throw new Error('Cant be negative')
+            throw new Error('Cant be negative');
         }
-        return numHour
-    })
+        return numHour;
+    });
 
     if (isNotNumber(args[2])) {
-        throw new Error ('Target is not a number')
+        throw new Error ('Target is not a number');
     }
 
     return {
         target: Number(args[2]),
         hoursTrained: hoursNumbers
-    }
-}
+    };
+};
 
 
 const calculateExercises = (targetHours: number, hoursTrained: number[]): exerciseHours => {
-    const average = hoursTrained.reduce((a, b) => a + b) / hoursTrained.length
+    const average = hoursTrained.reduce((a, b) => a + b) / hoursTrained.length;
 
     return {
         periodLength: hoursTrained.length,
@@ -70,16 +70,16 @@ const calculateExercises = (targetHours: number, hoursTrained: number[]): exerci
         ratingDescription: getRatingText(average),
         target: targetHours,
         average: average
-    }
-}
+    };
+};
 
 try {
-    const {target, hoursTrained} = parseArgumentsExercise(process.argv)
-    console.log(calculateExercises(target, hoursTrained))
+    const {target, hoursTrained} = parseArgumentsExercise(process.argv);
+    console.log(calculateExercises(target, hoursTrained));
 } catch (error: unknown) {
-    let errorMessage = 'Error: '
+    let errorMessage = 'Error: ';
     if (error instanceof Error) {
-        errorMessage += error.message
+        errorMessage += error.message;
     }
-    console.log(errorMessage)
+    console.log(errorMessage);
 }
