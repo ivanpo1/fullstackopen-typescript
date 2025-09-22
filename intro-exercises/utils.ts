@@ -1,2 +1,2 @@
-export const isNotNumber = (argument: never): boolean =>
+export const isNotNumber = (argument: unknown): boolean =>
     isNaN(Number(argument));
