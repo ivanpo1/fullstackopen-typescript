@@ -1,13 +1,18 @@
 import diagnosesData from '../../data/diagnoses.js';
 
-import type { DiagnosisEntry } from '../types.js';
+import type { Diagnosis } from '../types.js';
 
-const diagnoses: DiagnosisEntry[] = diagnosesData;
+const diagnoses: Diagnosis[] = diagnosesData;
 
 const getEntries = () => {
     return diagnoses;
 };
 
+const getDiagnoseByCode = (code: string) : Diagnosis | undefined => {
+    return diagnoses.find(d => d.code === code);
+};
+
 export default {
-    getEntries
+    getEntries,
+    getDiagnoseByCode
 };
