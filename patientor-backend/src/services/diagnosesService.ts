@@ -4,7 +4,7 @@ import type { Diagnosis } from '../types.js';
 
 const diagnoses: Diagnosis[] = diagnosesData;
 
-const getEntries = () => {
+const getEntries = () : Diagnosis[] => {
     return diagnoses;
 };
 
