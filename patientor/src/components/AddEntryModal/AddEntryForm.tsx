@@ -6,7 +6,7 @@ import axios from "axios";
 import * as React from "react";
 
 interface Props {
-    onCancel: () => void;
+    onClose: () => void;
     onSubmit: ( values: EntryWithoutId ) => Promise<void>;
     diagnosis: Diagnosis[];
 }
@@ -17,7 +17,7 @@ const assertNever = ( value: never ): never => {
     );
 };
 
-const EntryForm = ( { onSubmit, onCancel, diagnosis }: Props ) => {
+const EntryForm = ( { onSubmit, onClose, diagnosis }: Props ) => {
     const [ description, setDescription ] = useState<string>('');
     const [ date, setDate ] = useState<string>('');
     const [ specialist, setSpecialist ] = useState<string>('');
@@ -62,6 +62,7 @@ const EntryForm = ( { onSubmit, onCancel, diagnosis }: Props ) => {
             }
 
             await onSubmit(entryData);
+            onClose();
             resetForm();
         } catch (e: unknown) {
             if ( axios.isAxiosError(e) ) {
@@ -238,7 +239,7 @@ const EntryForm = ( { onSubmit, onCancel, diagnosis }: Props ) => {
 
                                 <InputLabel
                                     style={ { marginBottom: 12 } }>
-                                    Sick Leave</InputLabel>
+                                    Sick Leave (Optional)</InputLabel>
                                 <TextField
                                     label="Start Date"
                                     type="date"
@@ -277,7 +278,7 @@ const EntryForm = ( { onSubmit, onCancel, diagnosis }: Props ) => {
                                 color="secondary"
                                 variant="contained"
                                 type="button"
-                                onClick={ onCancel }
+                                onClick={ onClose }
                                 size="small"
                                 style={ {
                                     float: "inline-start",

@@ -21,7 +21,7 @@ const AddEntryModal = ({ modalOpen, onClose, onSubmit, patientName, diagnosis }:
         </DialogTitle>
         <Divider />
         <DialogContent>
-            <AddEntryForm onSubmit={onSubmit} onCancel={onClose} diagnosis={diagnosis}/>
+            <AddEntryForm onSubmit={onSubmit} onClose={onClose} diagnosis={diagnosis}/>
         </DialogContent>
     </Dialog>
 );
